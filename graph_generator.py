@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 path = './Death_rates_for_suicide__by_sex__race__Hispanic_origin__and_age__United_States(1).csv'
 df = pd.read_csv(path)
 
+
+
 path2 = './annual_gold_rate.csv'
 df_2 = pd.read_csv(path2)
 df_2 = df_2.rename(columns={'Date': 'YEAR'})
