@@ -14,8 +14,12 @@ df_2 = df_2.rename(columns={'Date': 'YEAR'})
 df_selected = df[['ESTIMATE', 'YEAR']]
 df_selected_2 = df_2[['YEAR', 'USD']]
 
+
+# Merge Dataframes on common columns for analysis
 merged_df = pd.merge(df, df_2, on='YEAR')
 final_df = merged_df[['ESTIMATE', 'YEAR', 'USD']]
+
+
 
 final_df.dropna()
 final_df.reindex(axis = 0)
