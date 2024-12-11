@@ -10,7 +10,7 @@ tourismdata = pd.read_csv("./datasets/tourist.csv", usecols = ["Year", "Visitors
 weatherdata['Year'] = pd.to_datetime(weatherdata['Date'], format='%m/%d/%Y').dt.year
 weatherdata.drop(columns=['Date'], inplace=True)
 
-# Merge datasets on 'Country'
+# Merge datasets on 'Year'
 merged_data = pd.merge(weatherdata, tourismdata, on="Year")
 
 
