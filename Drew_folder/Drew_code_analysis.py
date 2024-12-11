@@ -1,71 +1,43 @@
+import os
 import sys
 import time
+import Functions as fun
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 
 run = True
-
+source_path = "Drew_folder"
 while(run) :
 
-    selection = input("Enter selection: ")
+    selection = input("Enter selection (o for options): ")
 
     if selection.lower() == 'o' : 
         print(''' list of options: 
                 1 - Choose datasets to compare
-                2 - 
-                3 - 
-                4 - 
-                5 -  
-                6 - 
-                7 - 
-                8 - 
-                9 - 
-                10 - 
-                11 - Or q to quit. ''')
+                2 - Print current working datasets
+                3 - Display column names in each dataset
+                4 - Chose columns to compare
+                5 - Print correlation matrix for chosen columns
+                6 - Or q to quit. ''')
 
-    elif selection == "1" : 
+    elif selection == "1" :
+        fun.choose_datasets(source_path)
 
-        # Load the first dataset
-        path = 'Death_rates_for_suicide__by_sex__race__Hispanic_origin__and_age__United_States(1).csv'
-        df = pd.read_csv(path)
+    elif selection == "2" : 
+        fun.print_datasets()
 
-        # Load the second dataset
-        path2 = 'annual_gold_rate.csv'
-        df_2 = pd.read_csv(path2)
-        df_2 = df_2.rename(columns={'Date': 'YEAR'})
+    elif selection == "3" :
+        fun.List_all_files_second_method(source_path)
 
-        # Select relevant columns
-        df_selected = df[['ESTIMATE', 'YEAR']]
-        df_selected_2 = df_2[['YEAR', 'USD']]
+    elif selection == "4" :
+        fun.List_all_files(source_path) 
 
+    elif selection == "5" :
+        fun.List_all_files(source_path) 
 
-        # Merge Dataframes on common columns for analysis
-        merged_df = pd.merge(df, df_2, on='YEAR')
-        final_df = merged_df[['ESTIMATE', 'YEAR', 'USD']]
-
-
-        # Filling blank entries for continuity
-        final_df.dropna()
-        final_df.reindex(axis = 0)
-
-        # print(final_df.head())  # View the first few rows
-        # print(merged_df.info())  # Inspect data types and non-null counts
-        # print(merged_df.describe())  # View summary statistics
-
-
-        # Compute the correlation matrix
-        correlation_matrix = final_df.corr()
-        print(correlation_matrix)
-
-
-        # Plot the heatmap
-        sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
-        plt.title("Correlation Heatmap")
-        plt.show()
-
-    elif selection == '11' or selection == 'q' : 
+    elif selection == '6' or selection == 'q' : 
         # quit program 
         print("quitting")
         run = False
