@@ -12,9 +12,18 @@ socialmediadata.drop(columns=['DateTime'], inplace=True)
 airqualitydata['Month'] = pd.to_datetime(airqualitydata['Date']).dt.month
 airqualitydata.drop(columns=['Date'], inplace=True)
 
+# Group by Year and get the max value of 'Cum_Rain' and 'Visitors'
+groupedsocialmediadata = socialmediadata.groupby('Month')['User Follower Count'].max()
+groupedairqualitydata = airqualitydata.groupby('Month')['CO'].max()
+
 
 # Merge datasets on 'Year'
-merged_data = pd.merge(socialmediadata, airqualitydata, on="Month")
+merged_data = pd.merge(groupedsocialmediadata, groupedairqualitydata, on="Month")
+
+
+# Reset index to convert 'Year' from index to column
+merged_data.reset_index(inplace=True)
+
 
 # Calculate correlation matrix
 correlation_matrix = merged_data.corr()
@@ -42,7 +51,7 @@ ax2.set_ylabel('CO', fontsize=12, color='green')
 ax2.tick_params(axis='y', labelcolor='green')
 
 # Title and grid
-plt.title('follower count vs CO air quality', fontsize=14)
+plt.title('follower count vs CO air quality 2024', fontsize=14)
 ax1.grid(True, which='both', linestyle='--', linewidth=0.5)
 
 # Add legends for both y-axes

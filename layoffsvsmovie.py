@@ -11,9 +11,17 @@ layoffsdata['Year'] = pd.to_datetime(layoffsdata['Date'], format='%Y-%m-%d').dt.
 layoffsdata.drop(columns=['Date'], inplace=True)
 moviedata["Worldwide"] = moviedata["Worldwide"].str.replace(',','').astype(int)
 
-# Merge datasets on 'Year'
-merged_data = pd.merge(layoffsdata, moviedata, on="Year")
+# Group by Year and get the max value of 'Cum_Rain' and 'Visitors'
+groupedlayoffsdata = layoffsdata.groupby('Year')['total_laid_off'].max()
+groupedmoviedata = moviedata.groupby('Year')['Worldwide'].max()
+groupedmoviedata = groupedmoviedata[groupedmoviedata > 200000000]
 
+# Merge datasets on 'Year'
+merged_data = pd.merge(groupedlayoffsdata, groupedmoviedata, on="Year")
+
+
+# Reset index to convert 'Year' from index to column
+merged_data.reset_index(inplace=True)
 
 # Calculate correlation matrix
 correlation_matrix = merged_data.corr()
@@ -36,12 +44,12 @@ ax1.tick_params(axis='y', labelcolor='blue')
 
 # Add a secondary y-axis for Visitors
 ax2 = ax1.twinx()
-ax2.plot(merged_data["Year"], merged_data["Worldwide"], label="World wide amount", color='green', marker='s')
-ax2.set_ylabel('World wide amount', fontsize=12, color='green')
+ax2.plot(merged_data["Year"], merged_data["Worldwide"], label="World wide Boxoffice", color='green', marker='s')
+ax2.set_ylabel('Worldwide Boxoffice ', fontsize=12, color='green')
 ax2.tick_params(axis='y', labelcolor='green')
 
 # Title and grid
-plt.title('Layoffs vs Worldwide amount', fontsize=14)
+plt.title('Layoffs vs Worldwide Boxoffice > $200,000,000', fontsize=14)
 ax1.grid(True, which='both', linestyle='--', linewidth=0.5)
 
 # Add legends for both y-axes

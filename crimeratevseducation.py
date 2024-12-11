@@ -16,6 +16,7 @@ correlation_matrix = merged_data.corr()
 
 print(correlation_matrix)
 
+# Create heatmap
 plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm")
 plt.title("Correlation Heatmap")
