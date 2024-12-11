@@ -28,7 +28,8 @@ print(correlation_matrix)
 # Plot heatmap
 plt.figure(figsize=(8, 6))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
-plt.title("Correlation Heatmap")
+plt.title("Correlation Heatmap between Obesity and Unemployment Rate per US State")
+plt.savefig('Obesity_vs_Unemployment_Heatmap.png')
 plt.show()
 
 # Plot scatter plot
@@ -37,6 +38,8 @@ final_df.plot.scatter(
     y='Unemployment_percentage_per_state', 
     color='blue'
 )
+plt.title('Relationship between Unemployment Rate and Obesity per US State')
 plt.xlabel('Obesity')
 plt.ylabel('Unemployment Percentage Per State')
+plt.savefig('Obesity_vs_Unemployment_Scatterplot.png')
 plt.show()
