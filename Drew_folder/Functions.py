@@ -5,12 +5,17 @@ import time
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+
 global path_1
 global path_2
 global df_1
 global df_2
 global column_names_list_1
 global column_names_list_2
+global column_1
+global column_1_1
+global column_2
+global column_2_2
 
 def print_all_files(source_path):
     # Scan the directory and get
@@ -71,16 +76,46 @@ def create_column_names_from_dataframes():
     global df_2
     column_names_1 = df_1.columns
     column_names_2 = df_2.columns
+    global column_names_list_1
+    global column_names_list_2
 
     column_names_list_1 = list(df_1.columns)
     column_names_list_2 = list(df_2.columns)
     return column_names_list_1, column_names_list_2
 
-def merge_dataframes_on_chosen_columns():
-    column_1 = input("Which column(s) would you like to (specific join) in table 1?")
-    print("Which columns would you like to (specific join) in table 2?")
+def choose_column_names_to_analyze():
+    global column_names_list_1
+    global column_names_list_2
+    global column_1
+    global column_1_1
+    global column_2
+    global column_2_2
 
+    print("The options for the first dataframe are: \n")
+    print(column_names_list_1)
+    column_1 = input("Which column would you like to (specific join) in table 1?")
+    column_1_1 = input("Which column would you like to (specific join) in table 1?")
+    print("The options for the second dataframe are: \n")
+    print(column_names_list_2)
+    column_2 = input("Which first column would you like to join in table 2?")
+    column_2_2 = input("Which second column would you like to join in table 2?")
+    return column_1, column_1_1, column_2, column_2_2
 
+def print_column_names_to_analyze():
+    global column_1
+    global column_1_1
+    global column_2
+    global column_2_2
+
+    print("The first column of dataframe 1 is: ")
+    print(column_1)
+    print("The second column of dataframe 1 is: ")
+    print(column_1_1)
+    print("The first column of dataframe 2 is: ")
+    print(column_2)
+    print("The second column of dataframe 2 is: ")
+    print(column_2_2)
+    
 
 def print_datasets():
     global path_1

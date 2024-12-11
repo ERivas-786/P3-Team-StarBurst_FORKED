@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 
 run = True
-source_path = "Drew_folder"
+source_path = "Drew_folder\Drew_Data"
 while(run) :
 
     selection = input("Enter selection (o for options): ")
@@ -18,7 +18,7 @@ while(run) :
                 1 - Choose datasets to compare
                 2 - Print current working datasets
                 3 - Create and print dataframes
-                4 - Display column names in each dataset
+                4 - Display column names in each dataframe
                 5 - Chose columns to compare
                 6 - Print correlation matrix for chosen columns
                 7 - Or q to quit. ''')
