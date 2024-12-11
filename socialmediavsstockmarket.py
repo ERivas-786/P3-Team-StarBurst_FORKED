@@ -8,7 +8,7 @@ airqualitydata = pd.read_csv("./datasets/airquality.csv", usecols = ["Date", "CO
 
 #convert date and time to datetime
 socialmediadata['Month'] = pd.to_datetime(socialmediadata['DateTime']).dt.month
-socialmediadata.drop(columns=['DateTime'], inplace=True)
+socialmediadata.drop('DateTime', axis=1, inplace=True)
 airqualitydata['Month'] = pd.to_datetime(airqualitydata['Date']).dt.month
 airqualitydata.drop(columns=['Date'], inplace=True)
 
