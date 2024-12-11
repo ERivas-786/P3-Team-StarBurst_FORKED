@@ -9,6 +9,8 @@ global path_1
 global path_2
 global df_1
 global df_2
+global column_names_list_1
+global column_names_list_2
 
 def print_all_files(source_path):
     # Scan the directory and get
@@ -63,6 +65,21 @@ def create_and_print_dataframes():
     print(df_1)
     print("\n")
     print(df_2)
+
+def create_column_names_from_dataframes():
+    global df_1
+    global df_2
+    column_names_1 = df_1.columns
+    column_names_2 = df_2.columns
+
+    column_names_list_1 = list(df_1.columns)
+    column_names_list_2 = list(df_2.columns)
+    return column_names_list_1, column_names_list_2
+
+def merge_dataframes_on_chosen_columns():
+    column_1 = input("Which column(s) would you like to (specific join) in table 1?")
+    print("Which columns would you like to (specific join) in table 2?")
+
 
 
 def print_datasets():
