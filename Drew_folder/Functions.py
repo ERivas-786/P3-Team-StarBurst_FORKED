@@ -7,6 +7,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 global path_1
 global path_2
+global df_1
+global df_2
 
 def print_all_files(source_path):
     # Scan the directory and get
@@ -30,21 +32,43 @@ def print_and_return_all_files_second_method(source_path):
     print(dir_list)
     return dir_list
 
+def print_and_return_all_files_innumerated(source_path):
+   
+    dir_list = os.listdir(source_path)
+    print("Files and directories in '", source_path, "' :")
+    # prints all files
+    for file in dir_list:
+        print(str(dir_list.index(file)) + "-" + file)
+    return dir_list
+
 def choose_datasets(source_path):
     global path_1
     global path_2
     print('''Which datasets would you like to compare?
               Press number of index for dataset 1 first,
               followed by index for dataset 2.''')
-    dir_list = print_and_return_all_files_second_method(source_path)
+    dir_list = print_and_return_all_files_innumerated(source_path)
     path_1 = dir_list[int(input())]
     path_2 = dir_list[int(input())]
     return path_1, path_2
 
+def create_and_print_dataframes():
+    global path_1
+    global path_2
+    global df_1
+    global df_2
+    df_1 = pd.read_csv(path_1)
+    df_2 = pd.read_csv(path_2)
+    print("The Dataframes are: ")
+    print(df_1)
+    print("\n")
+    print(df_2)
+
+
 def print_datasets():
     global path_1
     global path_2
-    print("The datasets are: " + path_1 + ", \n" + path_2 )
+    print("The datasets are: " "\n" + path_1 + ", \n" + path_2 )
 
 def OG_heatmap():
     
@@ -53,6 +77,7 @@ def OG_heatmap():
     df = pd.read_csv(path)
     # Load the second dataset
     path2 = 'annual_gold_rate.csv'
+    # Create the dataframe for second dataset
     df_2 = pd.read_csv(path2)
     df_2 = df_2.rename(columns={'Date': 'YEAR'})
     # Select relevant columns
