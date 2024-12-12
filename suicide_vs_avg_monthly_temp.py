@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 path = './Datasets/Death_rates_for_suicide__by_sex__race__Hispanic_origin__and_age__United_States(1).csv'
 path2 = './Datasets/average_monthly_temperature_by_state_1950-2022.csv'
 
-df = pd.read_csv(path).rename(columns={'YEAR': 'Year'})
+df = pd.read_csv(path).rename(columns={'YEAR': 'Year', 'ESTIMATE': 'Suicide_Rate'})
 
 df_2 = pd.read_csv(path2).rename(columns={'year': 'Year'})
 
@@ -16,11 +16,12 @@ df_2 = pd.read_csv(path2).rename(columns={'year': 'Year'})
 
 
 # # Aggregate unemployment data by State/Area
-
+suicide_agg = df.groupby('Year')['Suicide_Rate'].mean().reset_index()
 temp_agg = df_2.groupby('Year')['average_temp'].mean().reset_index()
 
+
 # # Merge datasets
-merged_df = pd.merge(df[['Year', 'ESTIMATE']], temp_agg, on='Year', how='inner')
+merged_df = pd.merge(suicide_agg, temp_agg, on='Year', how='inner')
 final_df = merged_df.dropna().reset_index(drop=True)
 
 print(final_df)
@@ -28,7 +29,7 @@ print(final_df)
 # # Print the final DataFrame
 
 # # Compute correlation matrix
-correlation_matrix = final_df[['Year', 'average_temp', 'ESTIMATE']].corr()
+correlation_matrix = final_df[['Year', 'average_temp', 'Suicide_Rate']].corr()
 print(correlation_matrix)
 
 # # Plot heatmap

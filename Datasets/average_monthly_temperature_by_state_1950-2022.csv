@@ -1,4 +1,4 @@
-,month,year,state,average_temp,monthly_mean_from_1901_to_2000,centroid_lon,centroid_lat
+,month,year,State,average_temp,monthly_mean_from_1901_to_2000,centroid_lon,centroid_lat
 0,01,1950,Alabama,53.8,45.9,-86.8283719359,32.7898321918
 1,01,1950,Arizona,39.6,41.1,-111.664418336,34.2931098705
 2,01,1950,Arkansas,45.6,40.4,-92.4392676639,34.8997453322

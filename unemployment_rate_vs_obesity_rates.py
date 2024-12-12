@@ -11,9 +11,10 @@ df_2 = pd.read_csv(path2).rename(columns={'NAME': 'State/Area'})
 
 # Aggregate unemployment data by State/Area
 unemployment_agg = df.groupby('State/Area')['Unemployment_percentage_per_state'].mean().reset_index()
+obesity_agg = df_2.groupby('State/Area')['Obesity'].mean().reset_index()
 
 # Merge datasets
-merged_df = pd.merge(unemployment_agg, df_2[['State/Area', 'Obesity']], on='State/Area', how='inner')
+merged_df = pd.merge(unemployment_agg, obesity_agg, on='State/Area', how='inner')
 
 # Handle missing values (if any)
 final_df = merged_df.dropna().reset_index(drop=True)
