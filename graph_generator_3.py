@@ -2,6 +2,9 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+
+#AVOCADO PRICE VS SUICIDE RATES
+
 # Load datasets
 path = './Death_rates_for_suicide__by_sex__race__Hispanic_origin__and_age__United_States(1).csv'
 path2 = './avocado.csv'
@@ -14,7 +17,7 @@ df_2['Year'] = df_2['Date'].dt.year
 
 
 # # Aggregate unemployment data by State/Area
-# unemployment_agg = df.groupby('State/Area')['Unemployment_percentage_per_state'].mean().reset_index()
+# avocado_agg = df.groupby('Year')['AveragePrice'].mean().reset_index()
 
 # # Merge datasets
 merged_df = pd.merge(df[['Year', 'ESTIMATE']], df_2[['Year', 'AveragePrice']], on='Year', how='inner')
