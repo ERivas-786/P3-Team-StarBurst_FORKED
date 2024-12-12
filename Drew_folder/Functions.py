@@ -231,24 +231,41 @@ def merge_dataframes_on_chosen_columns():
         merge_column = column_1
         df_merged = pd.merge(df_1, df_2, on = merge_column)
         final_df = df_merged[[column_1_1, merge_column, column_2_2]]
+        final_df.dropna()
+        final_df.reindex(axis = 0)
 
     elif (column_1 == column_2_2):
         merge_column = column_1_1
         df_merged = pd.merge(df_1, df_2, on = merge_column)
         final_df = df_merged[[column_1_1, merge_column, column_2]]
+        final_df.dropna()
+        final_df.reindex(axis = 0)
 
     elif (column_1_1 == column_2):
         merge_column = column_1_1
         df_merged = pd.merge(df_1, df_2, on = merge_column)
         final_df = df_merged[[column_1, merge_column, column_2_2]]
+        final_df.dropna()
+        final_df.reindex(axis = 0)
 
     elif (column_1_1 == column_2_2):
         merge_column = column_1_1
         df_merged = pd.merge(df_1, df_2, on = merge_column)
         final_df = df_merged[[column_1, merge_column, column_2]]
+        final_df.dropna()
+        final_df.reindex(axis = 0)
 
     else:
         print("Columns don't match. Can't merge.")
+
+def new_school_heat_map():
+    global final_df
+    
+    correlation_matrix = final_df.corr()
+    print(correlation_matrix)
+    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+    plt.title("Correlation Heatmap")
+    plt.show()
         
 def print_merged_dataframe():
     global final_df

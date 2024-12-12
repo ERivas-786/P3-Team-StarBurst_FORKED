@@ -24,7 +24,8 @@ while(run) :
                 7 - Print column names to analyze
                 8 - Merge dataframes on chosen columns
                 9 - Print merged dataframe
-                10 - Or q to quit. ''')
+                10 - Generate correlation heatmap
+                11 - Or q to quit. ''')
 
     elif selection == "1" :
         fun.choose_datasets(source_path)
@@ -53,7 +54,10 @@ while(run) :
     elif selection == "9" :
         fun.print_merged_dataframe() 
 
-    elif selection == '10' or selection == 'q' : 
+    elif selection == "10" :
+        fun.new_school_heat_map() 
+
+    elif selection == '11' or selection == 'q' : 
         # quit program 
         print("quitting")
         run = False
