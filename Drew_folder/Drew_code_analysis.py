@@ -21,8 +21,10 @@ while(run) :
                 4 - Create column names from dataframes
                 5 - Print column names to analyze
                 6 - Choose column names to analyze
-                7 - Print correlation matrix for chosen columns
-                8 - Or q to quit. ''')
+                7 - Print column names to analyze
+                8 - Merge dataframes on chosen columns
+                9 - Print merged dataframe
+                10 - Or q to quit. ''')
 
     elif selection == "1" :
         fun.choose_datasets(source_path)
@@ -43,9 +45,15 @@ while(run) :
         fun.choose_column_names_to_analyze() 
 
     elif selection == "7" :
-        fun.choose_column_names_to_analyze() 
+        fun.print_column_names_to_analyze() 
 
-    elif selection == '8' or selection == 'q' : 
+    elif selection == "8" :
+        fun.merge_dataframes_on_chosen_columns() 
+
+    elif selection == "9" :
+        fun.print_merged_dataframe() 
+
+    elif selection == '10' or selection == 'q' : 
         # quit program 
         print("quitting")
         run = False

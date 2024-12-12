@@ -10,6 +10,10 @@ global path_1
 global path_2
 global df_1
 global df_2
+global df_1_truncated
+global df_2_truncated
+global df_merged
+global final_df
 global column_names_list_1
 global column_names_list_2
 global column_1
@@ -113,14 +117,15 @@ def choose_column_names_to_analyze():
     for name in column_names_list_1:
         print(str(column_names_list_1.index(name)) + "- " + name)
     print("\n")
-    column_1 = input("Which column would you like to (specific join) in table 1? ")
-    column_1_1 = input("Which column would you like to (specific join) in table 1? ")
+    column_1 = column_names_list_1[int(input("Which column would you like to (specific join) in table 1? "))]
+    column_1_1 = column_names_list_1[int(input("Which column would you like to (specific join) in table 1? "))]
+
     print("The options for the second dataframe are: \n")
     for name in column_names_list_2:
         print(str(column_names_list_2.index(name)) + "- " + name)
     print("\n")
-    column_2 = input("Which first column would you like to join in table 2? ")
-    column_2_2 = input("Which second column would you like to join in table 2? ")
+    column_2 = column_names_list_2[int(input("Which first column would you like to join in table 2? "))]
+    column_2_2 = column_names_list_2[int(input("Which second column would you like to join in table 2? "))]
     return column_1, column_1_1, column_2, column_2_2
 
 
@@ -154,6 +159,100 @@ def print_column_names_to_analyze():
     print(column_2)
     print("The second column of dataframe 2 is: ")
     print(column_2_2)
+
+def merge_dataframes_on_chosen_columns():
+    global df_1
+    global df_2
+    # global df_1_truncated
+    # global df_2_truncated
+    # global df_merged
+    global final_df
+    global column_1
+    global column_1_1
+    global column_2
+    global column_2_2
+    
+
+    print('''Columns to be merged on
+          (with same data)
+          need to be renamed to the same name to be merged properly. ''')
+
+    renaming = input("Should any columns be renamed? (y or n) ")
+    while renaming == "y":
+        df_number = int(input("Which dataframe is the column in? (1 or 2)"))
+        column_number = int(input("Which column should be renamed? (1 or 2)"))
+
+        if df_number == 1:
+
+            if column_number == 1:
+                new_name = input("What should the new name be? ")
+                df_1 = df_1.rename(columns={column_1: new_name})
+                column_1 = new_name
+                print("The column names are now: \n Dataframe 1: " + column_1 + " " + column_1_1 + "\n Dataframe 2: " + column_2 + " " + column_2_2)
+                renaming = input("Would you like to continue renaming? (y or n) ")
+
+
+            elif column_number == 2:
+                new_name = input("What should the new name be? ")
+                df_1 = df_1.rename(columns={column_1_1: new_name})
+                column_1_1 = new_name
+                print("The column names are now: \n Dataframe 1: " + column_1 + " " + column_1_1 + "\n Dataframe 2: " + column_2 + " " + column_2_2)
+                renaming = input("Would you like to continue renaming? (y or n) ")
+
+        elif df_number == 2:
+            
+            if column_number == 1:
+                new_name = input("What should the new name be? ")
+                df_2 = df_2.rename(columns={column_2: new_name})
+                column_2 = new_name
+                print("The column names are now: \n Dataframe 1: " + column_1 + " " + column_1_1 + "\n Dataframe 2: " + column_2 + " " + column_2_2)
+                renaming = input("Would you like to continue renaming? (y or n) ")
+
+            elif column_number == 2:
+                new_name = input("What should the new name be? ")
+                df_2 = df_2.rename(columns={column_2_2: new_name})
+                column_2_2 = new_name
+                print("The column names are now: \n Dataframe 1: " + column_1 + " " + column_1_1 + "\n Dataframe 2: " + column_2 + " " + column_2_2)
+                renaming = input("Would you like to continue renaming? (y or n) ")
+
+        else:
+            print("Enter only 1 or 2. ")
+        
+    df_1_truncated = df_1[[column_1, column_1_1]]
+    df_2_truncated = df_2[[column_2, column_2_2]]
+
+    # only_column_names_1 = [column_1, column_1_1]
+    # only_column_names_2 = [column_2, column_2_2]
+    # same_name = ""
+    # for name in only_column_names_1:
+    #     if name == only_column_names_2[1]:
+    merge_column = ""
+    if (column_1 == column_2):
+        merge_column = column_1
+        df_merged = pd.merge(df_1, df_2, on = merge_column)
+        final_df = df_merged[[column_1_1, merge_column, column_2_2]]
+
+    elif (column_1 == column_2_2):
+        merge_column = column_1_1
+        df_merged = pd.merge(df_1, df_2, on = merge_column)
+        final_df = df_merged[[column_1_1, merge_column, column_2]]
+
+    elif (column_1_1 == column_2):
+        merge_column = column_1_1
+        df_merged = pd.merge(df_1, df_2, on = merge_column)
+        final_df = df_merged[[column_1, merge_column, column_2_2]]
+
+    elif (column_1_1 == column_2_2):
+        merge_column = column_1_1
+        df_merged = pd.merge(df_1, df_2, on = merge_column)
+        final_df = df_merged[[column_1, merge_column, column_2]]
+
+    else:
+        print("Columns don't match. Can't merge.")
+        
+def print_merged_dataframe():
+    global final_df
+    print(final_df)
     
 
 def OG_heatmap():
@@ -173,7 +272,7 @@ def OG_heatmap():
     df_2 = df_2.rename(columns={'Date': 'YEAR'})
 
 
-    # Select relevant columns
+    # Select relevant columns only?
     df_selected = df[['ESTIMATE', 'YEAR']]
     df_selected_2 = df_2[['YEAR', 'USD']]
 
