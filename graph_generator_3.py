@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 #AVOCADO PRICE VS SUICIDE RATES
 
 # Load datasets
-path = './Death_rates_for_suicide__by_sex__race__Hispanic_origin__and_age__United_States(1).csv'
-path2 = './avocado.csv'
+path = './Datasets/Death_rates_for_suicide__by_sex__race__Hispanic_origin__and_age__United_States(1).csv'
+path2 = './Datasets/avocado.csv'
 
 df = pd.read_csv(path).rename(columns={'YEAR': 'Year'})
 df_2 = pd.read_csv(path2)

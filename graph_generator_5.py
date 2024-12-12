@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 ##Crime VS Unemployment
 
 # Load datasets
-path = './Unemployment_in_America_Per_US_State.csv'
-path2 = './state_crime.csv'
+path = './Datasets/Unemployment_in_America_Per_US_State.csv'
+path2 = './Datasets/state_crime.csv'
 
 df = pd.read_csv(path).rename(columns={'State/Area': 'State', 'Percent (%) of Labor Force Unemployed in State/Area': 'Unemployment_percentage_per_state'})
 
@@ -37,11 +37,18 @@ plt.show()
 
 
 # Plot scatter plot
-sample_df = final_df.sample(frac=0.5, random_state=42)
+sample_df = final_df.sample(frac=0.10, random_state=42)
 sample_df.plot.scatter(
     x='Unemployment_percentage_per_state', 
     y='Violent_Crimes', 
     color='blue'
+)
+sns.regplot(
+    x='Unemployment_percentage_per_state',
+    y='Violent_Crimes',
+    data=final_df,
+    scatter_kws={"color": "blue"},
+    line_kws={"color": "red"}
 )
 plt.title('Relationship between Unemployment Rate and Crimes Committed per US State')
 plt.xlabel('Unemployment Rate(%)')

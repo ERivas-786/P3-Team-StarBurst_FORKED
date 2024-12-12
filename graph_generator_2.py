@@ -3,8 +3,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Load datasets
-path = './average_monthly_temperature_by_state_1950-2022.csv'
-path2 = './avocado.csv'
+path = './Datasets/average_monthly_temperature_by_state_1950-2022.csv'
+path2 = './Datasets/avocado.csv'
 
 df = pd.read_csv(path).rename(columns={'year': 'Year'})
 df_2 = pd.read_csv(path2)
@@ -43,13 +43,28 @@ plt.title("Temp vs Avocado")
 plt.show()
 
 # # Plot scatter plot
-# final_df.plot.scatter(
-#     x='Obesity', 
-#     y='Unemployment_percentage_per_state', 
-#     color='blue'
-# )
-# plt.title('Relationship between Unemployment Rate and Obesity per US State')
-# plt.xlabel('Obesity')
-# plt.ylabel('Unemployment Percentage Per State')
-# plt.savefig('Obesity_vs_Unemployment_Scatterplot.png')
-# plt.show()
+sample_df = final_df.sample(frac=0.10, random_state=42)
+
+
+fig, ax1 = plt.subplots(figsize=(10, 6))
+ax1.plot(final_df['Year'], final_df['average_temp'], color='red', label='Average Temperature')
+ax1.set_xlabel('Year')
+ax1.set_ylabel('Average Temperature (°C)', color='red')
+ax1.tick_params(axis='y', labelcolor='red')
+
+# Create the second Y-axis for avocado prices
+ax2 = ax1.twinx()
+ax2.plot(final_df['Year'], final_df['AveragePrice'], color='blue', label='Average Avocado Price')
+ax2.set_ylabel('Average Avocado Price (USD)', color='blue')
+ax2.tick_params(axis='y', labelcolor='blue')
+
+# Title and legend
+plt.title('Yearly Trends: Average Temperature vs. Avocado Prices')
+fig.tight_layout()
+ax1.legend(loc='upper left')
+ax2.legend(loc='upper right')
+
+# Save and show the plot
+filePath = './Analysis_results/'
+plt.savefig(filePath + 'Temperature_vs_Avocado_Prices_LineGraph.png')
+plt.show()

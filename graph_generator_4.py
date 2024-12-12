@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 ##TEMP VS SUICIDE YEARLY
 
 # Load datasets
-path = './Death_rates_for_suicide__by_sex__race__Hispanic_origin__and_age__United_States(1).csv'
-path2 = './average_monthly_temperature_by_state_1950-2022.csv'
+path = './Datasets/Death_rates_for_suicide__by_sex__race__Hispanic_origin__and_age__United_States(1).csv'
+path2 = './Datasets/average_monthly_temperature_by_state_1950-2022.csv'
 
 df = pd.read_csv(path).rename(columns={'YEAR': 'Year'})
 
