@@ -16,29 +16,36 @@ while(run) :
     if selection.lower() == 'o' : 
         print(''' list of options: 
                 1 - Choose datasets to compare
-                2 - Print current working datasets
+                2 - print current paths
                 3 - Create and print dataframes
-                4 - Display column names in each dataframe
-                5 - Chose columns to compare
-                6 - Print correlation matrix for chosen columns
-                7 - Or q to quit. ''')
+                4 - Create column names from dataframes
+                5 - Print column names to analyze
+                6 - Choose column names to analyze
+                7 - Print correlation matrix for chosen columns
+                8 - Or q to quit. ''')
 
     elif selection == "1" :
         fun.choose_datasets(source_path)
 
     elif selection == "2" : 
-        fun.print_datasets()
+        fun.print_paths()
 
     elif selection == "3" :
         fun.create_and_print_dataframes()
 
     elif selection == "4" :
-        fun.List_all_files(source_path) 
+        fun.create_column_names_from_dataframes()
 
     elif selection == "5" :
-        fun.List_all_files(source_path) 
+        fun.print_column_names_to_analyze_lists() 
 
-    elif selection == '6' or selection == 'q' : 
+    elif selection == "6" :
+        fun.choose_column_names_to_analyze() 
+
+    elif selection == "7" :
+        fun.choose_column_names_to_analyze() 
+
+    elif selection == '8' or selection == 'q' : 
         # quit program 
         print("quitting")
         run = False
