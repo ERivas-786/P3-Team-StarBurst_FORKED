@@ -16,14 +16,14 @@ while(run) :
     if selection.lower() == 'o' : 
         print(''' list of options: 
                 1 - Choose datasets to compare
-                2 - print current paths
+                (2) - print current paths
                 3 - Create and print dataframes
                 4 - Create column names from dataframes
-                5 - Print column names to analyze
+                (5) - Print column names to analyze
                 6 - Choose column names to analyze
-                7 - Print column names to analyze
+                (7) - Print column names to analyze
                 8 - Merge dataframes on chosen columns
-                9 - Print merged dataframe
+                (9) - Print merged dataframe
                 10 - Generate correlation heatmap
                 11 - Or q to quit. ''')
 
