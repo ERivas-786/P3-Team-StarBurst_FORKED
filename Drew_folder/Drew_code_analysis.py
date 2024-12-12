@@ -46,7 +46,7 @@ while(run) :
         fun.choose_column_names_to_analyze() 
 
     elif selection == "7" :
-        fun.print_column_names_to_analyze() 
+        fun.print_column_names_to_analyze_lists() 
 
     elif selection == "8" :
         fun.merge_dataframes_on_chosen_columns() 
