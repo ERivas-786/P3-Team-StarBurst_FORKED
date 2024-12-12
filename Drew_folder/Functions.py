@@ -241,6 +241,13 @@ def merge_dataframes_on_chosen_columns():
     else:
         print("Columns don't match. Can't merge.")
 
+def group_by_chosen_column():
+    global final_df
+
+    print("The column names are: \n Final Dataframe: 1- " + final_df.columns[0]+ ", 2- " + final_df.columns[1]+ ", 3- " + final_df.columns[2])
+    group_by_column = input("Which column would you like to group by? ")
+    final_df.groupby(group_by_column).mean()
+
 def new_school_heat_map():
     global final_df
 
@@ -249,6 +256,8 @@ def new_school_heat_map():
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
     plt.title("Correlation Heatmap")
     plt.show()
+    heatmap_name = input("What would you like to call the heatmap? ")
+    plt.savefig(heatmap_name + ".png")
         
 def print_merged_dataframe():
     global final_df
