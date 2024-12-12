@@ -11,8 +11,8 @@ weatherdata['Year'] = pd.to_datetime(weatherdata['Date']).dt.year
 weatherdata.drop(columns=['Date'], inplace=True)
 
 # Group by Year and get the max value of 'Cum_Rain' and 'Visitors'
-groupedweatherdata = weatherdata.groupby('Year')['Cum_Rain'].max()
-groupedtouristdata = tourismdata.groupby('Year')['Visitors'].max()
+groupedweatherdata = weatherdata.groupby('Year')['Cum_Rain'].mean()
+groupedtouristdata = tourismdata.groupby('Year')['Visitors'].mean()
 
 # Merge datasets on 'Year'
 merged_data = pd.merge(groupedweatherdata, groupedtouristdata, on="Year")

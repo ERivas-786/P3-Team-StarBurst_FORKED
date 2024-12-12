@@ -12,9 +12,9 @@ layoffsdata.drop(columns=['Date'], inplace=True)
 moviedata["Worldwide"] = moviedata["Worldwide"].str.replace(',','').astype(int)
 
 # Group by Year and get the max value of 'Cum_Rain' and 'Visitors'
-groupedlayoffsdata = layoffsdata.groupby('Year')['total_laid_off'].max()
-groupedmoviedata = moviedata.groupby('Year')['Worldwide'].max()
-groupedmoviedata = groupedmoviedata[groupedmoviedata > 200000000]
+groupedlayoffsdata = layoffsdata.groupby('Year')['total_laid_off'].mean()
+groupedmoviedata = moviedata.groupby('Year')['Worldwide'].mean()
+
 
 # Merge datasets on 'Year'
 merged_data = pd.merge(groupedlayoffsdata, groupedmoviedata, on="Year")
@@ -50,7 +50,7 @@ ax2.set_ylabel('Worldwide Boxoffice ', fontsize=12, color='green')
 ax2.tick_params(axis='y', labelcolor='green')
 
 # Title and grid
-plt.title('Layoffs vs Worldwide Boxoffice > $200,000,000', fontsize=14)
+plt.title('Layoffs vs Worldwide Boxoffice Sales', fontsize=14)
 ax1.grid(True, which='both', linestyle='--', linewidth=0.5)
 
 # Add legends for both y-axes

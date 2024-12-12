@@ -13,8 +13,8 @@ airqualitydata['Month'] = pd.to_datetime(airqualitydata['Date']).dt.month
 airqualitydata.drop(columns=['Date'], inplace=True)
 
 # Group by Year and get the max value of 'Cum_Rain' and 'Visitors'
-groupedsocialmediadata = socialmediadata.groupby('Month')['User Follower Count'].max()
-groupedairqualitydata = airqualitydata.groupby('Month')['CO'].max()
+groupedsocialmediadata = socialmediadata.groupby('Month')['User Follower Count'].mean()
+groupedairqualitydata = airqualitydata.groupby('Month')['CO'].mean()
 
 
 # Merge datasets on 'Year'
