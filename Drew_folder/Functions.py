@@ -62,8 +62,8 @@ def choose_datasets(source_path):
     global path_1
     global path_2
     print('''Which datasets would you like to compare?
-              Press number of index for dataset 1 first,
-              followed by index for dataset 2.''')
+              Enter number of index for dataset 1 first,
+              followed by index for dataset 2. ''')
     dir_list = print_and_return_all_files_innumerated(source_path)
     path_1 = "./Drew_folder/Drew_Data/" + dir_list[int(input())]
     path_2 = "./Drew_folder/Drew_Data/" + dir_list[int(input())]
@@ -85,7 +85,9 @@ def create_and_print_dataframes():
     df_2 = pd.read_csv(path_2)
 
     print("The Dataframes are: ")
+    print(path_1 + ":")
     print(df_1)
+    print(path_2 + ":")
     print(df_2)
 
 
@@ -98,6 +100,8 @@ def create_column_names_from_dataframes():
 
     column_names_list_1 = list(df_1.columns.tolist())
     column_names_list_2 = list(df_2.columns.tolist())
+
+    print("List of column names created! ")
 
     return column_names_list_1, column_names_list_2
 
@@ -117,8 +121,8 @@ def choose_column_names_to_analyze():
     for name in column_names_list_1:
         print(str(column_names_list_1.index(name)) + "- " + name)
     print("\n")
-    column_1 = column_names_list_1[int(input("Which column would you like to (specific join) in table 1? "))]
-    column_1_1 = column_names_list_1[int(input("Which column would you like to (specific join) in table 1? "))]
+    column_1 = column_names_list_1[int(input("Which column would you like to join in table 1? "))]
+    column_1_1 = column_names_list_1[int(input("Which column would you like to join in table 1? "))]
 
     print("The options for the second dataframe are: \n")
     for name in column_names_list_2:
@@ -145,27 +149,10 @@ def print_column_names_to_analyze_lists():
 
     print("\n")
 
-def print_column_names_to_analyze():
-    global column_1
-    global column_1_1
-    global column_2
-    global column_2_2
-
-    print("The first column of dataframe 1 is: ")
-    print(column_1)
-    print("The second column of dataframe 1 is: ")
-    print(column_1_1)
-    print("The first column of dataframe 2 is: ")
-    print(column_2)
-    print("The second column of dataframe 2 is: ")
-    print(column_2_2)
 
 def merge_dataframes_on_chosen_columns():
     global df_1
     global df_2
-    # global df_1_truncated
-    # global df_2_truncated
-    # global df_merged
     global final_df
     global column_1
     global column_1_1
@@ -173,14 +160,16 @@ def merge_dataframes_on_chosen_columns():
     global column_2_2
     
 
-    print('''Columns to be merged on
-          (with same data)
-          need to be renamed to the same name to be merged properly. ''')
-
+    print('''
+    Columns to be merged on
+    (with same data)
+    need to be renamed to the same name to be merged properly. ''')
+    print("The column names are now: \n Dataframe 1: " + column_1 + ", " + column_1_1 + "\n Dataframe 2: " + column_2 + ", " + column_2_2)
+    
     renaming = input("Should any columns be renamed? (y or n) ")
     while renaming == "y":
-        df_number = int(input("Which dataframe is the column in? (1 or 2)"))
-        column_number = int(input("Which column should be renamed? (1 or 2)"))
+        df_number = int(input("Which dataframe is the column in? (1 or 2) "))
+        column_number = int(input("Which column should be renamed? (1 or 2) "))
 
         if df_number == 1:
 
@@ -218,14 +207,6 @@ def merge_dataframes_on_chosen_columns():
         else:
             print("Enter only 1 or 2. ")
         
-    df_1_truncated = df_1[[column_1, column_1_1]]
-    df_2_truncated = df_2[[column_2, column_2_2]]
-
-    # only_column_names_1 = [column_1, column_1_1]
-    # only_column_names_2 = [column_2, column_2_2]
-    # same_name = ""
-    # for name in only_column_names_1:
-    #     if name == only_column_names_2[1]:
     merge_column = ""
     if (column_1 == column_2):
         merge_column = column_1
@@ -233,6 +214,7 @@ def merge_dataframes_on_chosen_columns():
         final_df = df_merged[[column_1_1, merge_column, column_2_2]]
         final_df.dropna()
         final_df.reindex(axis = 0)
+        print("Dataframes successfully merged! \n")
 
     elif (column_1 == column_2_2):
         merge_column = column_1_1
@@ -240,6 +222,7 @@ def merge_dataframes_on_chosen_columns():
         final_df = df_merged[[column_1_1, merge_column, column_2]]
         final_df.dropna()
         final_df.reindex(axis = 0)
+        print("Dataframes successfully merged! \n")
 
     elif (column_1_1 == column_2):
         merge_column = column_1_1
@@ -247,6 +230,7 @@ def merge_dataframes_on_chosen_columns():
         final_df = df_merged[[column_1, merge_column, column_2_2]]
         final_df.dropna()
         final_df.reindex(axis = 0)
+        print("Dataframes successfully merged! \n")
 
     elif (column_1_1 == column_2_2):
         merge_column = column_1_1
@@ -254,13 +238,14 @@ def merge_dataframes_on_chosen_columns():
         final_df = df_merged[[column_1, merge_column, column_2]]
         final_df.dropna()
         final_df.reindex(axis = 0)
+        print("Dataframes successfully merged! \n")
 
     else:
         print("Columns don't match. Can't merge.")
 
 def new_school_heat_map():
     global final_df
-    
+
     correlation_matrix = final_df.corr()
     print(correlation_matrix)
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
