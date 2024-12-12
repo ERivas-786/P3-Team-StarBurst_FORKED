@@ -20,7 +20,9 @@ print(correlation_matrix)
 plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm")
 plt.title("Correlation Heatmap")
+plt.savefig("Crime vs Education correlation_heatmap.png")
 plt.show()
+
 
 
 fig, ax1 = plt.subplots(figsize=(10, 6))
@@ -46,4 +48,5 @@ ax1.legend(loc='upper left')
 ax2.legend(loc='upper right')
 
 # Show the plot
+plt.savefig("Crimevswagesplot.png") 
 plt.show()

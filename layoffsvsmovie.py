@@ -31,6 +31,7 @@ print(correlation_matrix)
 plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm")
 plt.title("Correlation Heatmap")
+plt.savefig("Layoffs vs Movie correlation_heatmap.png") 
 plt.show()
 
 
@@ -57,4 +58,5 @@ ax1.legend(loc='upper left')
 ax2.legend(loc='upper right')
 
 # Show the plot
+plt.savefig("Layoffsvsmovieplot.png") 
 plt.show()
