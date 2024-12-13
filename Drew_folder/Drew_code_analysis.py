@@ -16,7 +16,7 @@ while(run) :
                 3 - Create and print dataframes
                 (4) - Print only dataframes
                 5 - Create column names from dataframes
-                (6) - Print column names to analyze
+                (6) - Print all column names
                 7 - Choose column names to analyze
                 (8) - Convert datetime column to year only
                 (9) - Print column names to analyze

@@ -181,12 +181,17 @@ def convert_datetime_column_to_year_only():
 
     print_column_names_to_analyze()
 
-    which_dataframe = input("Which dataframe is the column in? (1, or 2): ")
-    date_time = input("Which datetime column needs converted? (type it out): ")
+    which_dataframe = int(input("Which dataframe is the column in? (1, or 2): "))
+    date = input("Which datetime column needs converted? (type it out): ")
     if which_dataframe == 1:
-        df_1['year'] = df_1[date_time].dt.year 
+
+        # df_1['Year'] = df_1[date].dt.strftime('%Y')
+        df_1[date] = pd.to_datetime(df_1[date])
+        df_1['Year'] = df_1[date].dt.year
+        print(df_1)
     if which_dataframe == 2:
-        df_2['year'] = df_2[date_time].dt.year 
+        df_1[date] = pd.to_datetime(df_1[date])
+        df_2['year'] = df_2[date].dt.year
 
 
 def merge_dataframes_on_chosen_columns():
