@@ -7,6 +7,24 @@ run = True
 source_path = "Drew_folder\Drew_Data"
 while(run) :
 
+
+    print(''' list of options: 
+                1 - Choose datasets to compare
+                (2) - print current paths
+                3 - Create and print dataframes
+                (4) - Print only dataframes
+                5 - Create column names from dataframes
+                (6) - Print all column names
+                7 - Choose column names to analyze
+                (8) - Convert datetime column to year only
+                (9) - Print column names to analyze
+                10 - Merge dataframes on chosen columns
+                (11) - Print merged dataframe
+                (12) - Group by chosen column
+                13 - Generate and save correlation heatmap
+                14 - Generate and save line graph
+                15 - Or q to quit. ''')
+
     selection = input("Enter selection (o for options): ")
 
     if selection.lower() == 'o' : 
