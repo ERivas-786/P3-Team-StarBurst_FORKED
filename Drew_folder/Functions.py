@@ -18,6 +18,7 @@ global column_1
 global column_1_1
 global column_2
 global column_2_2
+file_save_path = "./Drew_folder/Drew_figures/"
 
 def print_all_files(source_path):
     # Scan the directory and get
@@ -157,6 +158,7 @@ def merge_dataframes_on_chosen_columns():
     global column_2
     global column_2_2
     
+    
 
     print('''
     Columns to be merged on
@@ -244,9 +246,9 @@ def merge_dataframes_on_chosen_columns():
 def group_by_chosen_column():
     global final_df
 
-    print("The column names are: \n Final Dataframe: 1- " + final_df.columns[0]+ ", 2- " + final_df.columns[1]+ ", 3- " + final_df.columns[2])
+    print("The column names are: \n Final Dataframe: 0- " + final_df.columns[0]+ ", 1- " + final_df.columns[1]+ ", 2- " + final_df.columns[2])
     group_by_column = input("Which column would you like to group by? ")
-    final_df.groupby(group_by_column).mean()
+    final_df = final_df.groupby(group_by_column).mean().reset_index()
 
 def new_school_heat_map():
     global final_df
@@ -255,10 +257,62 @@ def new_school_heat_map():
     print(correlation_matrix)
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
     plt.title("Correlation Heatmap")
-    plt.show()
+
+    # save = input("Would you like to save the heatmap? (y or n) ")
+    # if save == "y":
     heatmap_name = input("What would you like to call the heatmap? ")
-    plt.savefig(heatmap_name + ".png")
-        
+    plt.savefig(file_save_path + heatmap_name)
+    plt.show()
+
+def generate_and_save_line_graph():
+    global final_df
+
+    fig, ax1 = plt.subplots(figsize=(10, 6))
+
+    # Plot the first column on the primary y-axis
+    final_df.plot(x=final_df.columns[0], y=final_df.columns[1], ax=ax1)
+
+    # Create a secondary y-axis
+    ax2 = ax1.twinx()
+
+    # Plot the second column on the secondary y-axis
+    final_df.plot(x=final_df.columns[0], y=final_df.columns[2], ax=ax2, color='red')
+
+    # Set the y-axis scales
+
+    print(
+    f'''
+    The datasets are:
+        {final_df.columns[1]}
+        {final_df.columns[2]}''')
+    axis_1_scale = input('''
+    Which scale should the first dataset have? 
+        (linear: Linear scale (default)
+        log, 
+        symlog, 
+        logit: Logit scale (for values between 0 and 1))
+        ''')
+    axis_2_scale = input("Which scale should the second dataset have? ")
+    ax1.set_yscale(axis_1_scale) 
+    ax2.set_yscale(axis_2_scale)    
+
+    # Set y-axis labels
+    ax1.set_ylabel(final_df.columns[1])
+    ax2.set_ylabel(final_df.columns[2])
+
+    plt.title(final_df.columns[1] + " vs " + final_df.columns[2] + " by " + final_df.columns[0])
+    fig.tight_layout()
+    ax1.legend(loc='upper left')
+    ax2.legend(loc='upper right')
+
+    # plt.show()
+
+    # save = input("Would you like to save the heatmap? (y or n) ")
+    # if save == "y":
+    line_graph_name = input("What would you like to call the line graph? ")
+    plt.savefig(file_save_path + line_graph_name)
+    plt.show()
+
 def print_merged_dataframe():
     global final_df
     print(final_df)

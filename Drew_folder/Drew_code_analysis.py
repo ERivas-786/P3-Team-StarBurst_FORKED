@@ -21,8 +21,9 @@ while(run) :
                 8 - Merge dataframes on chosen columns
                 (9) - Print merged dataframe
                 (10) - Group by chosen column
-                11 - Generate correlation heatmap
-                12 - Or q to quit. ''')
+                11 - Generate and save correlation heatmap
+                12 - Generate and save line graph
+                13 - Or q to quit. ''')
 
     elif selection == "1" :
         fun.choose_datasets(source_path)
@@ -57,7 +58,10 @@ while(run) :
     elif selection == "11" :
         fun.new_school_heat_map() 
 
-    elif selection == '12' or selection == 'q' : 
+    elif selection == "12" :
+        fun.generate_and_save_line_graph() 
+
+    elif selection == '13' or selection == 'q' : 
         # quit program 
         print("quitting")
         run = False
