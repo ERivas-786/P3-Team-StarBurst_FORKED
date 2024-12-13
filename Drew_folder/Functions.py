@@ -104,6 +104,22 @@ def create_column_names_from_dataframes():
 
     return column_names_list_1, column_names_list_2
 
+def print_only_dataframes():
+    global df_1
+    global df_2
+    global path_1
+    global path_2
+
+    print(
+f'''
+    The dataframes are: 
+    {path_1}
+    {df_1}
+
+    {path_2}
+    {df_2}
+    ''')
+
 
 def choose_column_names_to_analyze():
     global column_names_list_1

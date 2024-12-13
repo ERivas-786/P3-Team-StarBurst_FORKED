@@ -14,17 +14,18 @@ while(run) :
                 1 - Choose datasets to compare
                 (2) - print current paths
                 3 - Create and print dataframes
-                4 - Create column names from dataframes
-                (5) - Print column names to analyze
-                6 - Choose column names to analyze
-                (7) - Convert datetime column to year only
-                (8) - Print column names to analyze
-                9 - Merge dataframes on chosen columns
-                (10) - Print merged dataframe
-                (11) - Group by chosen column
-                12 - Generate and save correlation heatmap
-                13 - Generate and save line graph
-                14 - Or q to quit. ''')
+                (4) - Print only dataframes
+                5 - Create column names from dataframes
+                (6) - Print column names to analyze
+                7 - Choose column names to analyze
+                (8) - Convert datetime column to year only
+                (9) - Print column names to analyze
+                10 - Merge dataframes on chosen columns
+                (11) - Print merged dataframe
+                (12) - Group by chosen column
+                13 - Generate and save correlation heatmap
+                14 - Generate and save line graph
+                15 - Or q to quit. ''')
 
     elif selection == "1" :
         fun.choose_datasets(source_path)
@@ -36,36 +37,39 @@ while(run) :
         fun.create_and_print_dataframes()
 
     elif selection == "4" :
-        fun.create_column_names_from_dataframes()
+        fun.print_only_dataframes()
 
     elif selection == "5" :
-        fun.print_column_names_to_analyze_lists() 
+        fun.create_column_names_from_dataframes()
 
     elif selection == "6" :
-        fun.choose_column_names_to_analyze() 
+        fun.print_column_names_to_analyze_lists() 
 
     elif selection == "7" :
-        fun.convert_datetime_column_to_year_only() 
+        fun.choose_column_names_to_analyze() 
 
     elif selection == "8" :
-        fun.print_column_names_to_analyze() 
+        fun.convert_datetime_column_to_year_only() 
 
     elif selection == "9" :
-        fun.merge_dataframes_on_chosen_columns() 
+        fun.print_column_names_to_analyze() 
 
     elif selection == "10" :
-        fun.print_merged_dataframe() 
+        fun.merge_dataframes_on_chosen_columns() 
 
     elif selection == "11" :
-        fun.group_by_chosen_column() 
+        fun.print_merged_dataframe() 
 
     elif selection == "12" :
-        fun.new_school_heat_map() 
+        fun.group_by_chosen_column() 
 
     elif selection == "13" :
+        fun.new_school_heat_map() 
+
+    elif selection == "14" :
         fun.generate_and_save_line_graph() 
 
-    elif selection == '14' or selection == 'q' : 
+    elif selection == '15' or selection == 'q' : 
         # quit program 
         print("quitting")
         run = False
