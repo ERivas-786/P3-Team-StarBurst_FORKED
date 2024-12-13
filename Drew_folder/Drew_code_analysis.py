@@ -25,6 +25,7 @@ while(run) :
                 14 - Generate and save line graph
                 15 - Or q to quit. ''')
 
+
     selection = input("Enter selection (o for options): ")
 
     if selection.lower() == 'o' : 
