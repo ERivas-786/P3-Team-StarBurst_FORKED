@@ -17,13 +17,14 @@ while(run) :
                 4 - Create column names from dataframes
                 (5) - Print column names to analyze
                 6 - Choose column names to analyze
-                (7) - Print column names to analyze
-                8 - Merge dataframes on chosen columns
-                (9) - Print merged dataframe
-                (10) - Group by chosen column
-                11 - Generate and save correlation heatmap
-                12 - Generate and save line graph
-                13 - Or q to quit. ''')
+                (7) - Convert datetime column to year only
+                (8) - Print column names to analyze
+                9 - Merge dataframes on chosen columns
+                (10) - Print merged dataframe
+                (11) - Group by chosen column
+                12 - Generate and save correlation heatmap
+                13 - Generate and save line graph
+                14 - Or q to quit. ''')
 
     elif selection == "1" :
         fun.choose_datasets(source_path)
@@ -44,24 +45,27 @@ while(run) :
         fun.choose_column_names_to_analyze() 
 
     elif selection == "7" :
-        fun.print_column_names_to_analyze_lists() 
+        fun.convert_datetime_column_to_year_only() 
 
     elif selection == "8" :
-        fun.merge_dataframes_on_chosen_columns() 
+        fun.print_column_names_to_analyze() 
 
     elif selection == "9" :
-        fun.print_merged_dataframe() 
+        fun.merge_dataframes_on_chosen_columns() 
 
     elif selection == "10" :
-        fun.group_by_chosen_column() 
+        fun.print_merged_dataframe() 
 
     elif selection == "11" :
-        fun.new_school_heat_map() 
+        fun.group_by_chosen_column() 
 
     elif selection == "12" :
+        fun.new_school_heat_map() 
+
+    elif selection == "13" :
         fun.generate_and_save_line_graph() 
 
-    elif selection == '13' or selection == 'q' : 
+    elif selection == '14' or selection == 'q' : 
         # quit program 
         print("quitting")
         run = False
