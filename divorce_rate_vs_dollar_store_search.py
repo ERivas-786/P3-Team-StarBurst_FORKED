@@ -57,7 +57,7 @@ ax2.set_ylabel('Divorce Rate (Per 100,000)', fontsize=12, color='red')
 ax2.tick_params(axis='y', labelcolor='red')
 
 # Add a title and grid
-plt.title('Dollar Store Search Interest and Divorce Rate Over Time (r=-0.01)', fontsize=14)
+plt.title('Dollar Store Search Interest and Divorce Rate Over Time', fontsize=14)
 ax1.grid(True, linestyle=':')
 
 # Show the plot

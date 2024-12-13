@@ -40,7 +40,7 @@ print(correlation_matrix)
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
 plt.title("Florida Temperature vs Avocado Prices")
 filePath = './Analysis_results/'
-plt.savefig(filePath + 'Avocado_Sales_vs_Florida_Temperature_Heatmap.png')
+plt.savefig(filePath + 'Avocado_Prices_vs_Florida_Temperature_Heatmap.png')
 plt.show()
 
 # Plotting the Line Graph for Florida Temperature vs Avocado Prices
@@ -65,5 +65,5 @@ ax2.legend(loc='upper right')
 
 # Save and show the plot
 filePath = './Analysis_results/'
-plt.savefig(filePath + 'Florida_Temperature_vs_Avocado_Prices_LineGraph.png')
+plt.savefig(filePath + 'Avocado_Prices_vs_Florida_Temp_LineGraph.png')
 plt.show()

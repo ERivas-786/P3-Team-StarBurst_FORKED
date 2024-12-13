@@ -49,7 +49,7 @@ sns.regplot(
     line_kws={"color": "red"}
 )
 plt.title('Relationship between Unemployment Rate and Obesity per US State')
-plt.xlabel('Obesity')
+plt.xlabel('Obesity Percentage Per State')
 plt.ylabel('Unemployment Percentage Per State')
 
 filePath = './Analysis_results/'

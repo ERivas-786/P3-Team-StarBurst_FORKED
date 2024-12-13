@@ -56,7 +56,7 @@ ax2.set_ylabel('Suicide Rate (Per 100,000)', fontsize=12, color='red')
 ax2.tick_params(axis='y', labelcolor='red')
 
 # Add a title and grid
-plt.title('Correlation Between Suicide Rates and Average Yearly Temperature (r=-0.39)', fontsize=14)
+plt.title('Correlation Between Suicide Rates and Average Yearly Temperature', fontsize=14)
 ax1.grid(True, linestyle=':')
 
 # Show the plot
