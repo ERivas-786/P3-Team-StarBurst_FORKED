@@ -288,6 +288,11 @@ def merge_dataframes_on_chosen_columns():
     else:
         print("Columns don't match. Can't merge. ")
 
+def print_merged_dataframe():
+    global final_df
+    print(final_df)
+    
+
 def group_by_chosen_column():
     global final_df
 
@@ -357,8 +362,3 @@ def generate_and_save_line_graph():
     line_graph_name = input("What would you like to call the line graph?: ")
     plt.savefig(file_save_path + line_graph_name)
     plt.show()
-
-def print_merged_dataframe():
-    global final_df
-    print(final_df)
-    
