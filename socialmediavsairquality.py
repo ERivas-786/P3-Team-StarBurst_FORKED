@@ -24,6 +24,8 @@ merged_data = pd.merge(groupedsocialmediadata, groupedairqualitydata, on="Month"
 # Reset index to convert 'Year' from index to column
 merged_data.reset_index(inplace=True)
 
+#John's comment
+# 2
 
 # Calculate correlation matrix
 correlation_matrix = merged_data.corr()
