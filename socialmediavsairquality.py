@@ -63,3 +63,12 @@ ax2.legend(loc='upper right')
 plt.savefig("Socialmediavsairqualityplot.png") 
 plt.show()
 
+#method:
+def change_column_header(cols):
+    changed = []
+    for item in cols:
+        if date_patterns.search(item):
+            changed.append('Year/Date') 
+        else:
+            changed.append(item)
+    return changed
