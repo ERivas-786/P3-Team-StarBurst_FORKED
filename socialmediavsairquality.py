@@ -75,6 +75,14 @@ ax2.plot(merged_data["Month"], merged_data["CO"], label="air quality CO", color=
 ax2.set_ylabel('CO', fontsize=12, color='green')
 ax2.tick_params(axis='y', labelcolor='green')
 
+
+# Sneak a little merge conflict here >:) - Alexi
+
+def merge_that_conflict():
+    print("Uh oh!")
+
+# boop
+
 # Title and grid
 plt.title('follower count vs CO air quality 2024', fontsize=14)
 ax1.grid(True, which='both', linestyle='--', linewidth=0.5)
