@@ -32,12 +32,12 @@ def change_column_header(cols):
     for item in cols:
         if date_patterns.search(item):
             changed.append('Year/Date') 
-        else:
+        # else:
             changed.append(item)
     return changed
-# Reset index to convert 'Year' from index to column
+# Reset index to convert 'Year' from indgit ex to column
 merged_data.reset_index(inplace=True)
-
+#something 
 #John's comment
 # 2
 
