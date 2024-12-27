@@ -23,7 +23,6 @@ merged_data = pd.merge(groupedsocialmediadata, groupedairqualitydata, on="Month"
 '''more merge conflicts
 dfsopiodiospjfplksdf'''
 #re for find pattern
-date_patterns = re.compile(r'(date|year)', re.IGNORECASE)
 #dftgdfsdfgssdfghsdfghsdfdf
 print("fffkjfkfkfkfk")
 # rename date|year columns to 'Year/Date'
@@ -37,10 +36,9 @@ def change_column_header(cols):
     return changed
 # Reset index to convert 'Year' from indgit ex to column
 merged_data.reset_index(inplace=True)
-#something 
 #John's comment
 # 2
-
+'''dfgpodfigjapojkadfgpokoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo'''
 '''
 MERGE CONFLICT HERE?????
 ?????????????????
